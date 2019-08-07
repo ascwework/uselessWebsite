@@ -1,8 +1,9 @@
 const usernameElement = document.getElementById("username");
 const messageElement = document.getElementById("message");
 const button = document.getElementById("submitButton");
+const fetchGif = document.getElementById("fetch-result");
 button.addEventListener("click",updateDB);
-
+let apiUrl = "http://api.giphy.com/v1/gifs/random?tag=science&rating=g&api_key=u71yonEbiqrlm6ETghNGxvAPlhPLanJf&limit=1"
 //Set database object here
 
 
@@ -51,6 +52,14 @@ function updateDB(event){
     
 //     messageBoard.appendChild(pElement);
 // }
+
+fetch(apiUrl)
+.then(function(response) { 
+		return response.json();
+	}).then(function(my_result) {
+        fetchGif.src= my_result.data.image_url;
+        console.log(my_result);
+	});
 
 
 
